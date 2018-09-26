@@ -11,7 +11,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 Bundler.require(*Rails.groups)
 
-module TwitterApp
+module TwtrFeed
   class Application < Rails::Application
     config.load_defaults 5.2
     config.api_only = true
