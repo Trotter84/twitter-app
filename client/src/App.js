@@ -1,21 +1,28 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Grid } from 'semantic-ui-react'
+import axios from 'axios'
 
-class App extends Component {
+class App extends React.Component {
+  state = { tweets: [] }
+
+  componentDidMount() {
+    axios.get('/api/tweets')
+      .then( res => this.setState({ tweets: res.data }) )
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <Grid>
+        <Grid.Row>
+          <Grid.Column mobile={16} tablet={16} computer={4}>
+          </Grid.Column>
+          <Grid.Column mobile={16} tablet={16} computer={12}>
+            <Tweets tweets={this.state.tweets} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    )
   }
 }
 
-export default App;
+export default App
